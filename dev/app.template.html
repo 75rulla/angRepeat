@@ -1,0 +1,20 @@
+<label><input type="checkbox" [(ngModel)]="tableState.groupBySurname" />group by surname</label>
+
+<label><input type="checkbox" [(ngModel)]="tableState.groupByName" />group by name</label>
+
+
+<button *ngIf="showFilters" (click)="tableState.addItem()">+</button>
+
+<div style="height: calc(100vh - 50px);">
+    <div *aGroupFor="let item of tableState.items$ | async by tableState.groupBy; let group=groupName; let i=index;let par = parent;">
+        <h3 *ngIf="group">{{item.value}}</h3>
+        <span *ngIf="!group">
+            <span>{{i}}</span>
+            <span>{{item.surname}}</span>
+            <span>{{item.name}}</span>
+            <span>{{item.patrionity}}</span>
+            <b>{{par?'yes':'no'}}</b>
+        </span>
+    </div>
+	
+</div>
